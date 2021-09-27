@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang = "pt-br">
+
+<head>
+	<title>Netflix DataBase</title>
+	<meta charset = "utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!--<link rel = "stylesheet" href = "style.css">-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"rel="stylesheet"/>
+</head>
+
+<script type="text/javascript">
+	function addIdToPath(form_name, base_url){
+		var your_form = document.getElementById(form_name);
+		var id = your_form.elements.namedItem("id").value;
+		action_src = base_url + id;
+		your_form.action = action_src;
+	}
+</script>
+
+<body>
+	<p>
+	<center>
+	<h1 style="color:red;">Netflix DataBase</h1>
+	
+	</p>
+
+	<div class="row container" id="home">
+
+		<div class="card col-md-3" style="background-color: black;">
+		  <button type="button" data-bs-toggle="modal" data-bs-target="#inserir" style="background-color:black;">
+			  <img width = "100%" src = "im1.jpg" class="card-img-top" alt="imagem">
+			  <div class="card-body">
+				  <p class="card-title" style="color: white;"><strong>Inserir</strong></p>
+			</div>
+		  </button>
+		  <div class="modal fade" id="inserir" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" role="dialog">
+			  <div class="modal-dialog modal-lg">
+				  <div class="modal-content">
+					  <div class="modal-body" style="background-color:rgb(27, 27, 27);">
+						<form class="form--register" action="http://localhost:5500/serie" method="post" id="form-add">
+							<p>Nome:</p>
+							<br>          
+							<input class="input--register" type="text" name="nome" value="" placeholder="friends">
+							<br>
+							<p>Sinopse:</p>  
+							<br>            
+							<input class="input--register" type="text" name="sinopse" value="" placeholder="seis amigos na cidade de NY ...">
+							<br>
+							<p>Genêro:</p>
+							<br>
+							<input class="input--register" type="text" name="genero" value="" placeholder="comédia, drama">
+							<br>
+							<p>Data de lançamento:</p>
+							<br>
+							<input class="input--register" type="text" name="lancamento" value="" placeholder="22-09-1994"> 
+							<br>
+							<p>Número de temporadas:</p>
+							<br>
+							<input class="input--register" type="text" name="temporadas" value="" placeholder="10">
+							<br>
+							<p>Número de episódios:</p>
+							<br>
+							<input class="input--register" type="text" name="episodios" value="" placeholder="236"> 
+							<input type="submit" value="cadastrar" class="input--main__style input--button bts">
+						</form>                    
+					  </div>
+				  </div>
+			  </div>
+		  </div>
+		</div>
+
+
+		<div class="card col-md-3" style="border-color:black; background-color:black;">
+		  <button type="button" data-bs-toggle="modal" data-bs-target="#consultar" style="background-color:black;">
+			  <img width = "100%" src = "im2.jpg" class="card-img-top" alt="imagem">
+			  <div class="card-body">
+				<p class="card-title" style="color: white;"><strong>Consultar</strong></p>
+			</div>
+		  </button>
+		  <div class="modal fade" id="consultar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" role="dialog">
+			  <div class="modal-dialog modal-lg">
+				  <div class="modal-content">
+					  <div class="modal-body" style="background-color:black;">
+						<form onsubmit="addIdToPath('form-get', 'http://localhost:5500/serie/')" method="get" id="form-get">
+							<input class="input--down" type="text" id="id" value="" placeholder="id do produto..."> 
+							<input type="submit" value="consultar" class="input--button input--consult__style bts">
+						</form>               
+					  </div>
+				  </div>
+			  </div>
+		  </div>
+		</div>
+
+
+		<div class="card col-md-3" style="background-color:black;">
+			<button type="button" data-bs-toggle="modal" data-bs-target="#remover" style="background-color:black;">
+				<img width = "100%" src = "im3.jpg" class="card-img-top" alt="imagem">
+				<div class="card-body">
+					<p class="card-title" style="color:white;"><strong>Remover</strong></p>
+				</div>
+			</button>
+			<div class="modal fade" id="remover" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" role="dialog">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-body" style="background-color:black;">
+							<form onsubmit="addIdToPath('form-delete', 'http://localhost:5500/serie/delete/')" method="get" id="form-delete">
+								<input class="input--down" type="text" id="id" value="" placeholder="id do produto...">
+								<input type="submit" value="remover" class="input--remove__style input--button bts">
+							</form>                    
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="card col-md-3" style="border-color:black; background-color:black;">
+			<form action="http://localhost:5500/serie"  method="get" id="form-all">
+				<button type="submit" data-bs-toggle="modal" data-bs-target="#listar" class="input--consult__style input--button bts" style="border-color: white; background-color:black;">
+					<img width = "100%" src = "im4.jpg" class="card-img-top" alt="imagem">
+					<div class="card-body">
+						<p class="card-title" style="color:white;"><strong>Listar<br><br></strong></p>
+					
+							<!--<input type="submit" value="." class="input--consult__style input--button">-->
+					</div>
+				</button>
+			</form>
+	  		<div class="modal fade" id="listar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" role="dialog">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-body">
+							<table border="1">
+								<tr>
+									<td>Série id:</td>
+									<td><span id="id">Sem Resultado</span></td>
+								</tr>
+								<tr>
+									<td>Nome:</td>
+									<td><span id="nome">Sem Resultado</span></td>
+								</tr>
+								<tr>
+									<td>Sinopse:</td>
+									<td><span id="sinopse">Sem Resultado</span></td>
+								</tr>
+								<tr>
+									<td>Genêro:</td>
+									<td><span id="genero">Sem Resultado</span></td>
+								</tr>
+								<tr>
+									<td>Data de lançamento:</td>
+									<td><span id="lancamento">Sem Resultado</span></td>
+								</tr>
+								<tr>
+									<td>Número de temporadas:</td>
+									<td><span id="temporadas">Sem Resultado</span></td>
+								</tr>
+								<tr>
+									<td>Número de episódios:</td>
+									<td><span id="episodios">Sem Resultado</span></td>
+								</tr>
+							</table>                    
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</center>
+
+<style>
+* {
+	box-sizing: border-box;
+}
+
+body {
+	background-color: rgb(31, 3, 3);
+}
+
+.col-md-3, button, img{
+	border-radius: 5px;
+}
+
+.col-md-3{
+	padding: 20px 20px 0 20px;
+}
+
+#inserir p{
+	color: white;
+}
+
+.bts{
+	background-color: red;
+}
+
+.generaltext, p {
+	font-family: Arial;
+	text-align: center;
+}
+
+#consultar, #remover, #listar{
+	min-height: 100%;
+}
+
+.section--container__responsive {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	border-bottom: dashed;
+	border-color: gray;
+}
+
+.input--down {
+	display: block;
+	margin: 0px auto;
+	margin-bottom: 10px;
+}
+
+.input--button {
+	font-weight: bold;
+	font-family: Arial;
+	font-size: medium;
+	border-color: transparent;
+	display: block;
+	margin: 0px auto;
+	margin-bottom: 10px;
+	color: white;
+}
+
+.input--register {
+	display: inline;
+}
+
+.input--radio {
+	display: inline;
+}
+
+input {
+	display: block;
+	border-radius: 7px;
+	padding: 10px;
+	border-style: solid;
+	border-color: lightgray;
+	color: black;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+.p--radio__display {
+	display: block;
+}
+
+form p {
+	text-align: initial;
+	display: inline;
+	margin-left: 15px;
+}
+
+.p--nomargin {
+	margin-left: 0px;
+	margin-right: 10px;
+}
+</style>
+
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+  	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+
+</body>
+</html>
